@@ -1,0 +1,15 @@
+{% extends './base.html.twig' %}
+
+{% block body_id %}main{% endblock %}
+
+{% block interface %}main{% endblock %}
+
+{% block body %}
+    {% include 'include/navbar.html.twig' %}
+
+    <div class="{% block main_clas %}main{% endblock %}">
+        {% block main %}{% endblock %}
+    </div>
+
+    {% include 'include/footer.html.twig' %}
+{% endblock %}

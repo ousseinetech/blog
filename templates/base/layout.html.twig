@@ -1,0 +1,11 @@
+{% extends './base.html.twig' %}
+
+{% block body_id %}layout{% endblock %}
+
+{% block interface %}layout{% endblock %}
+
+{% block body %}
+    <div class="{% block layout_clas %}contain{% endblock %}">
+        {% block layout %}{% endblock %}
+    </div>
+{% endblock %}

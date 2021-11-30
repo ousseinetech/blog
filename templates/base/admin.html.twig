@@ -1,0 +1,11 @@
+{% extends './base.html.twig' %}
+
+{% block body_id %}admin{% endblock %}
+
+{% block interface %}admin{% endblock %}
+
+{% block body %}
+    <div class="{% block admin_clas %}contain{% endblock %}">
+        {% block admin %}{% endblock %}
+    </div>
+{% endblock %}
