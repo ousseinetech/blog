@@ -1,15 +1,25 @@
-{% extends './base.html.twig' %}
+{% extends 'base/base.html.twig' %}
 
-{% block body_id %}main{% endblock %}
+{% block body_id %}main-interface{% endblock %}
 
-{% block interface %}main{% endblock %}
+{% block css %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('layout') }}
+    {{ encore_entry_link_tags('main') }}
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('layout') }}
+    {{ encore_entry_script_tags('main') }}
+{% endblock %}
 
 {% block body %}
-    {% include 'include/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
     <div class="{% block main_clas %}main{% endblock %}">
         {% block main %}{% endblock %}
     </div>
 
-    {% include 'include/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 {% endblock %}

@@ -59,15 +59,6 @@ class AppFixtures extends Fixture
            ->setRoles(['ROLE_AUTHOR']);
         $manager->persist($user);
 
-        // create cateogries
-        $categories = [];
-        for ($i = 1; $i <= 10; $i++) {
-           $category = new Category();
-           $category->setName($faker->words($faker->numberBetween(2, 3), true));
-           $manager->persist($category);
-           $categories[] = $category;
-        }
-
         // create comments
         $comments = [];
         for ($i = 1; $i <= 50; $i++) {
@@ -83,6 +74,7 @@ class AppFixtures extends Fixture
         }
 
         // create posts
+        $posts = [];
         for ($i = 1; $i <= 100; $i++) {
            $post = new Post();
            $minDate = '-' . mt_rand(0, 100) . ' days';
@@ -92,13 +84,21 @@ class AppFixtures extends Fixture
               ->setContent($faker->realText(4000))
               ->setImageName('img-post-defaut.jpg')
               ->setCreatedAt(new \DateTimeImmutable('- 100 days'))
-              ->setPublishedAt(new \DateTimeImmutable($minDate))
               ->setUpdatedAt(new \DateTimeImmutable($minDate))
               ->setIsPublished($faker->numberBetween(0, 1))
-              ->addCategory($categories[$faker->numberBetween(4, 8)])
               ->addComment($comments[$faker->numberBetween(3, 10)]);
            $manager->persist($post);
+           $posts[] = $post;
         }
+
+        // create cateogries
+        for ($i = 1; $i <= 10; $i++) {
+           $category = new Category();
+           $category
+              ->setName($faker->words($faker->numberBetween(2, 3), true))
+              ->addPost($posts[$faker->numberBetween(4, 10)]);
+           $manager->persist($category);
+       }
 
         $manager->flush();
     }

@@ -1,0 +1,24 @@
+{% extends 'base/main.html.twig' %}
+
+{% block title 'Blog | Articles' %}
+
+{% block main_clas %}{{ parent() }} blog{% endblock %}
+
+{% block main %}
+<div class="contain">
+    {# bannière #}
+    {% include 'main/components/_banner.html.twig' with {banner: banner} only %}
+
+    <div class="list-posts">
+        <div class="grid">
+            {% for post in posts %}
+                {% include 'main/components/_card.html.twig' with {post: post} only %}
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

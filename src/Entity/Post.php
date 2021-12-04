@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * @Vich\Uploadable
  * @ORM\Entity(repositoryClass=PostRepository::class)
  */
 class Post
@@ -41,6 +44,12 @@ class Post
      */
     private $content;
 
+   /**
+    * @var File|null
+    * @Vich\UploadableField(mapping="post_image", fileNameProperty="image_name")
+    */
+    private $imageFile;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -52,7 +61,7 @@ class Post
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $published_at;
 
@@ -128,12 +137,35 @@ class Post
         return $this;
     }
 
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+       return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     * @return Post
+     */
+    public function setImageFile(?File $imageFile = null): Post
+    {
+       $this->imageFile = $imageFile;
+
+       if (null !== $imageFile) {
+          $this->updated_at = new \DateTimeImmutable();
+       }
+
+       return $this;
+    }
+
     public function getImageName(): ?string
     {
         return $this->image_name;
     }
 
-    public function setImageName(string $image_name): self
+    public function setImageName(string $image_name = null): self
     {
         $this->image_name = $image_name;
 

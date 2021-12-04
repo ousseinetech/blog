@@ -1,0 +1,36 @@
+/*================================== navbar =======================================*/
+/*=================================================================================*/
+.container-fluid {
+    padding: .25rem 10rem;
+}
+
+.bg-inherit {
+    background-color: inherit;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.nav-link {
+    color: rgba(0,0,0,1);
+    text-transform: uppercase;
+}
+.nav-link:hover {
+    color: rgba(0,0,0,.5);
+}
+
+@media all and (max-width: 992px) {
+    .container-fluid {
+        padding: .25rem 4rem;
+    }
+}
+
+@media all and (max-width: 576px) {
+    .container-fluid {
+        padding: .25rem 1rem;
+    }
+}
+
+/*================================== footer =======================================*/
+/*=================================================================================*/

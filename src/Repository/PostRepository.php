@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,33 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    // /**
-    //  * @return Post[] Returns an array of Post objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+   /**
+    * @return int|mixed|string return 6 post of homepage
     */
+    public function findLatest()
+    {
+       $query = $this->QueryBuilder();
+       return $query
+          ->setMaxResults(6)
+          ->getQuery()
+          ->getResult();
+    }
 
-    /*
-    public function findOneBySomeField($value): ?Post
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
+   /**
+    * @return int|mixed|string listing posts on order desc for articles page
     */
+    public function findAllDesc()
+    {
+       $query = $this->QueryBuilder();
+       return $query->getQuery()->getResult();
+    }
+
+    private function QueryBuilder(): QueryBuilder
+   {
+      return $this
+         ->createQueryBuilder('p')
+         ->orderBy('p.published_at', 'DESC')
+         ;
+   }
+
 }

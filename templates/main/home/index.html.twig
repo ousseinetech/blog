@@ -1,0 +1,24 @@
+{% extends 'base/main.html.twig' %}
+
+{% block title 'Blog | Accueil' %}
+
+{% block main_clas %}{{ parent() }} home{% endblock %}
+
+{% block main %}
+<div class="contain">
+    {# bannière #}
+    {% include 'main/components/_banner.html.twig' with {banner: banner} only %}
+
+    <div class="last-post">
+        <h2 class="title">Dérnier article publié</h2>
+        <div class="grid">
+            {% for post in posts %}
+                {% include 'main/components/_card.html.twig' %}
+            {% endfor %}
+        </div>
+        <a href="{{ path('blog') }}" class="btn btn-primary btn-posts">
+            Voir plus d'article &nbsp;<i class="fas fa-long-arrow-alt-right"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

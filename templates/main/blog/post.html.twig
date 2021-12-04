@@ -1,0 +1,23 @@
+{% extends 'base/main.html.twig' %}
+
+{% block title 'Blog | titre du post' %}
+
+{% block main_clas %}{{ parent() }} post{% endblock %}
+
+{% block main %}
+    <div class="contain">
+        <div class="banner">
+            <img class="img-banner" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+            <div class="banner-body">
+                <div class="title">{{ post.title }}</div>
+            </div>
+        </div>
+        <div class="post-content">
+            <p class="published">
+                <strong>Date de publication : {{ post.publishedAt ? post.publishedAt|date('j F Y') : '' }}</strong>
+            </p>
+            <p class="summary"><em>{{ post.summary | raw }}</em></p>
+            <article class="article">{{ post.content | raw }}</article>
+        </div>
+    </div>
+{% endblock %}
