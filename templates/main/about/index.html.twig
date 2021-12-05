@@ -1,0 +1,21 @@
+{% extends 'base/main.html.twig' %}
+
+{% block title 'Blog | A propos de moi' %}
+
+{% block main_class %}{{ parent() }} about{% endblock %}
+
+{% block main %}
+<div class="contain">
+    {# banner #}
+    {% include 'main/components/_banner.html.twig' with {banner: banner } only %}
+
+    <div class="content">
+        <div class="about-content post-content">
+            {{ about.content | raw }}
+        </div>
+        <div class="sidebar">
+            {{ sidebar() }}
+        </div>
+    </div>
+</div>
+{% endblock %}
