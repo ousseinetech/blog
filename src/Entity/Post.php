@@ -26,7 +26,7 @@ class Post
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private ?string $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})
@@ -37,53 +37,53 @@ class Post
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $summary;
+    private ?string $summary;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $content;
+    private string $content;
 
    /**
     * @var File|null
     * @Vich\UploadableField(mapping="post_image", fileNameProperty="image_name")
     */
-    private $imageFile;
+    private ?File $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image_name;
+    private ?string $image_name;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $created_at;
+    private ?\DateTimeImmutable $created_at;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $published_at;
+    private ?\DateTimeImmutable $published_at;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $updated_at;
+    private ?\DateTimeImmutable $updated_at;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_published;
+    private ?bool $is_published;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="posts")
      */
-    private $categories;
+    private Collection $categories;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
      */
-    private $comments;
+    private Collection $comments;
 
     public function __construct()
     {

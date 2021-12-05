@@ -6,7 +6,29 @@
 
 {% block layout %}
 <div class="contain">
-    <h1>Post index</h1>
+    <div class="top">
+        <div class="dropdown">
+            <a class="btn btn-secondary" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user"></i>&nbsp;&nbsp;{{ app.user.name }}
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li class="drop-login">
+                    <i class="fas fa-user"></i>
+                    <p class="login-desc">Logged in as <br> {{ app.user.name }}</p>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li class="drop-logout">
+                    <a class="dropdown-item" href="{{ path('app_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h1 class="title">Post index</h1>
 
     <table class="table">
         <thead>
