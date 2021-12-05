@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\About;
 use App\Entity\Banner;
 use App\Entity\Category;
 use App\Entity\Comment;
@@ -36,7 +37,8 @@ class DashboardController extends AbstractDashboardController
     {
        return [
           MenuItem::linkToRoute('Website', 'fa fa-home', 'home'),
-          MenuItem::linkToCrud('Blog', 'fas fa-list', Post::class),
+          MenuItem::linkToCrud('About', 'fas fa-user', About::class),
+          MenuItem::linkToCrud('Posts', 'fas fa-list', Post::class),
           MenuItem::linkToCrud('Categories', 'fas fa-list-alt', Category::class),
           MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comment::class),
           MenuItem::linkToCrud('Bannière', 'fas fa-images', Banner::class),
