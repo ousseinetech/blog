@@ -1,0 +1,17 @@
+{% extends 'base/layout.html.twig' %}
+
+{% block layout_class %}author edit{% endblock %}
+
+{% block title 'Auteur | Edit post' %}
+
+{% block layout %}
+<div class="contain">
+    <h1 class="title">Edit Post</h1>
+
+    {{ include('author/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('blog_author_index') }}">back to list</a>
+
+    {{ include('author/_delete_form.html.twig') }}
+</div>
+{% endblock %}

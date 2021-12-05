@@ -1,36 +1,26 @@
-/*================================== navbar =======================================*/
+#layout {}
+
+/*================================== post-edit =======================================*/
 /*=================================================================================*/
-.container-fluid {
-    padding: .25rem 10rem;
+#layout .author {
+    width: 85%;
+    margin: 2rem auto;
 }
 
-.bg-inherit {
-    background-color: inherit;
-}
+.author .contain {}
 
-.navbar-collapse {
-    justify-content: flex-end;
-}
 
-.nav-link {
-    color: rgba(0,0,0,1);
-    text-transform: uppercase;
-}
-.nav-link:hover {
-    color: rgba(0,0,0,.5);
-}
-
-@media all and (max-width: 992px) {
-    .container-fluid {
-        padding: .25rem 4rem;
-    }
-}
-
-@media all and (max-width: 576px) {
-    .container-fluid {
-        padding: .25rem 1rem;
-    }
-}
-
-/*================================== footer =======================================*/
+/*================================= security ======================================*/
 /*=================================================================================*/
+#layout .login {
+    width: 30%;
+    margin: 4rem auto
+}
+
+.login .title {
+    margin-bottom: 2rem;
+}
+
+.login .form-row {
+    margin: 20px 0;
+}

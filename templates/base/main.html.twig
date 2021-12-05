@@ -4,13 +4,11 @@
 
 {% block css %}
     {{ parent() }}
-    {{ encore_entry_link_tags('layout') }}
     {{ encore_entry_link_tags('main') }}
 {% endblock %}
 
 {% block js %}
     {{ parent() }}
-    {{ encore_entry_script_tags('layout') }}
     {{ encore_entry_script_tags('main') }}
 {% endblock %}
 

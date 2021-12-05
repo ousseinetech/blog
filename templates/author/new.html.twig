@@ -1,0 +1,15 @@
+{% extends 'base/layout.html.twig' %}
+
+{% block layout_class %}author new{% endblock %}
+
+{% block title 'Auteur | New post' %}
+
+{% block layout %}
+<div class="contain">
+    <h1 class="title">Create new Post</h1>
+
+    {{ include('author/_form.html.twig') }}
+
+    <a href="{{ path('author_author_index') }}">back to list</a>
+</div>
+{% endblock %}

@@ -9,12 +9,13 @@ use App\Entity\Post;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
 use Faker\Factory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    protected $passwordHasher;
+    protected UserPasswordHasherInterface $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
@@ -22,7 +23,7 @@ class AppFixtures extends Fixture
     }
 
    /**
-    * @throws \Exception
+    * @throws Exception
     */
    public function load(ObjectManager $manager): void
     {
@@ -31,9 +32,7 @@ class AppFixtures extends Fixture
         // create about fixtures
         $about = new About();
         $about
-           ->setTitle($faker->sentence)
            ->setContent($faker->realText(1000))
-           ->setImageName('img-about.jpg')
            ->setUpdatedAt(new \DateTimeImmutable('- 3 months'));
         $manager->persist($about);
 

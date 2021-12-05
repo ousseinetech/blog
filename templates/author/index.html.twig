@@ -1,0 +1,45 @@
+{% extends 'base/layout.html.twig' %}
+
+{% block layout_class %}author index{% endblock %}
+
+{% block title 'Auteur | Post index' %}
+
+{% block layout %}
+<div class="contain">
+    <h1>Post index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Date de publication</th>
+                <th>Publication</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>
+                    <img src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}" width="75">
+                </td>
+                <td>{{ post.publishedAt ? post.publishedAt|date('j F Y') : '' }}</td>
+                <td>{{ post.isPublished ? 'Publié' : 'Non publié' }}</td>
+                <td>
+                    <a class="btn btn-sm btn-secondary" href="{{ path('blog_author_show', {'id': post.id}) }}">show</a>
+                    <a class="btn btn-sm btn-info" href="{{ path('blog_author_edit', {'id': post.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('blog_author_new') }}">Create new</a>
+</div>
+{% endblock %}

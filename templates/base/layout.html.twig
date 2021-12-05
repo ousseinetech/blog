@@ -4,8 +4,18 @@
 
 {% block interface %}layout{% endblock %}
 
+{% block css %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('layout') }}
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('layout') }}
+{% endblock %}
+
 {% block body %}
-    <div class="{% block layout_clas %}contain{% endblock %}">
+    <div class="{% block layout_class %}contain{% endblock %}">
         {% block layout %}{% endblock %}
     </div>
 {% endblock %}

@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+<div class="row">{{ form_row(form.title) }}</div>
+<div class="row">{{ form_row(form.summary) }}</div>
+<div class="row">
+    <div class="col col-sm">{{ form_row(form.categories) }}</div>
+    <div class="col col-sm">{{ form_row(form.imageFile) }}</div>
+    <div class="col col-sm">{{ form_row(form.published_at) }}</div>
+</div>
+<div class="row">{{ form_row(form.is_published) }}</div>
+<div class="row">{{ form_row(form.content) }}</div>
+<button class="btn btn-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

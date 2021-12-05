@@ -1,0 +1,30 @@
+{% extends 'base/layout.html.twig' %}
+
+{% block layout_class %}author show{% endblock %}
+
+{% block title 'Auteur | Post show' %}
+
+{% block layout %}
+<div class="contain">
+    <div class="article">
+        <h1 class="title">{{ post.title }}</h1>
+        <div class="img-card">
+            <img src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+        </div>
+        <p class="summary">{{ post.summary }}</p>
+        <div class="date">
+            <em>Date de creation : {{ post.createdAt ? post.createdAt|date('j F Y') : '' }}</em> <br>
+            <em>Date de publication : {{ post.publishedAt ? post.publishedAt|date('j F Y') : '' }}</em> <br>
+            <em>Dérnier modification : {{ post.updatedAt ? post.updatedAt|date('j F Y') : '' }}</em>
+        </div>
+        <div class="published">Publication : {{ post.isPublished ? 'publié' : 'non publié' }}</div>
+        <article>{{ post.content | raw }}</article>
+    </div>
+
+    <a class="btn btn-dark" href="{{ path('blog_author_index') }}">back to list</a>
+
+    <a class="btn btn-info" href="{{ path('blog_author_edit', {'id': post.id}) }}">edit</a>
+
+    {{ include('author/_delete_form.html.twig') }}
+</div>
+{% endblock %}
