@@ -1,0 +1,30 @@
+{% extends 'base/main.html.twig' %}
+
+{% block title 'Blog | Nous contacter' %}
+
+{% block main_class %}{{ parent() }} contact{% endblock %}
+
+{% block main %}
+<div class="contain">
+    <div class="message">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-info" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    {# banner #}
+    {% include 'main/components/_banner.html.twig' with {banner: banner} only %}
+
+    <div class="content">
+        <div class="post-content form">
+            {% include 'main/contact/_form_contact.html.twig' with {form: form} only %}
+        </div>
+
+        <div class="sidebar">
+            {{ sidebar() }}
+        </div>
+    </div>
+</div>
+{% endblock %}
