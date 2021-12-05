@@ -32,6 +32,17 @@ class PostRepository extends ServiceEntityRepository
           ->getResult();
     }
 
+    public function findForSidebar()
+    {
+       $query = $this->QueryBuilder();
+       return $query
+          ->where('p.published_at <= :now')
+          ->setParameter('now', new \DateTimeImmutable())
+          ->setMaxResults(3)
+          ->getQuery()
+          ->getResult();
+    }
+
    /**
     * @return int|mixed|string listing posts on order desc for articles page
     */

@@ -1,5 +1,5 @@
 #main-interface .main {
-    width: 60%;
+    width: 65%;
     margin: auto;
 }
 
@@ -36,40 +36,47 @@
     color: #FFFFFF;
 }
 
-/*================================ home =======================================*/
-/*=============================================================================*/
-.home .last-post {
-    position: relative;
-    width: 80%;
-    margin: 3rem auto;
+#main-interface .contain .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
 }
 
-.home .last-post .card {
+#main-interface .contain .post-content {
+    position: relative;
+    width: 65%;
+    margin: 3rem 0;
+}
+
+#main-interface .contain .sidebar {
+    width: 30%;
+    margin: 3rem 0;
+}
+
+/*================================ home =======================================*/
+/*=============================================================================*/
+.home .post-content .card {
     margin: 1.5rem 0;
 }
 
-.home .last-post .btn-posts {
+.home .post-content .btn-posts {
     position: relative;
     text-decoration: none;
     color: #FFFFFF;
     top: 0;
     right: 0;
-    left: 74%;
+    left: 64.5%;
 }
 
 
 /*============================== articles =====================================*/
 /*=============================================================================*/
-.blog .list-posts {
-    width: 80%;
-    margin: 3rem auto;
-}
-
 .blog .grid .card {
     margin: 2rem 0;
 }
 
-.blog .list-posts .pagination {
+.blog .post-content .pagination {
     display: flex;
     padding-left: 0;
     list-style: none;
@@ -86,6 +93,11 @@
     background-color: lightgray;
     padding: 1.2rem;
     font-size: .9rem;
+}
+
+.post .post-content .article {
+    border: 1px solid darkgray;
+    padding: 15px;
 }
 
 

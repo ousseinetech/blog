@@ -5,19 +5,48 @@
 {% block main_clas %}{{ parent() }} post{% endblock %}
 
 {% block main %}
-    <div class="contain">
-        <div class="banner">
-            <img class="img-banner" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
-            <div class="banner-body">
-                <div class="title">{{ post.title }}</div>
+<div class="contain">
+    <div class="message">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-info" role="alert">
+                {{ message }}
             </div>
+        {% endfor %}
+    </div>
+    {# banner #}
+    <div class="banner">
+        <img class="img-banner" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+        <div class="banner-body">
+            <div class="title">{{ post.title }}</div>
         </div>
+    </div>
+
+    <div class="content">
         <div class="post-content">
             <p class="published">
                 <strong>Date de publication : {{ post.publishedAt ? post.publishedAt|date('j F Y') : '' }}</strong>
             </p>
             <p class="summary"><em>{{ post.summary | raw }}</em></p>
             <article class="article">{{ post.content | raw }}</article>
+
+            <div class="comments">
+                <div class="list-comment">
+                    <h4 class="title"><i class="fa fa-comment"></i> ({{ post.comments |length }}) Commentaires</h4>
+                    {% for comment in post.comments %}
+                        {% include 'main/blog/_comments.html.twig' with {comment: comment} only %}
+                    {% endfor %}
+                </div>
+
+                <div class="form">
+                    <h4 class="title">Ajouter un commentaire</h4>
+                    {% include 'main/blog/_form_comment.html.twig' with {form: form} only %}
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            {{ sidebar() }}
         </div>
     </div>
+</div>
 {% endblock %}

@@ -1,0 +1,28 @@
+<div class="sidebar-content">
+    <div class="last-posts">
+        <h4 class="title">Dérnier articles</h4>
+        <div class="last-posts-content">
+            {% for post in posts %}
+                <div class="list-group">
+                    <img src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+                    <a href="{{ path('blog_post', {slug: post.slug}) }}" class="title">{{ post.title }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="categories">
+        <h4 class="title">Categories</h4>
+        <div class="categoy-content">
+            {% for category in categories %}
+                <ul class="list-group">
+                    <li class="category-item">
+                        <a class="category-link" href="{{ path('blog_category', {slug: category.slug}) }}">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>

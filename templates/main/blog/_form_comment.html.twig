@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col col-sm">{{ form_row(form.username) }}</div>
+    <div class="col col-sm">{{ form_row(form.email) }}</div>
+</div>
+<div class="row">{{ form_row(form.content) }}</div>
+<button class="btn btn-success btn-submit">Envoyer</button>
+{{ form_end(form) }}
