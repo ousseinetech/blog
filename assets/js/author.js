@@ -12,6 +12,8 @@ $(document).ready(function () {
 // select2
 import 'select2/dist/css/select2.min.css';
 import 'select2/dist/js/select2.min';
-$('select').select2()
+$('select').select2({
+    theme: 'bootstrap-5'
+})
 
 console.log('bonjour');
