@@ -1,6 +1,7 @@
 <div class="card">
     {% if post.imageName %}
-        <img class="card-img-top" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+        <img class="card-img-top" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{
+        post.imageName }}">
     {% else %}
         <img class="card-img-top" src="{{ 'build/images/img-post-default.def29fd8.jpg' }}" alt="image par defaut">
     {% endif %}

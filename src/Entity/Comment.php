@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -18,29 +19,39 @@ class Comment
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Le champ username ne peut pas etre vide")
      * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    private ?string $username;
 
     /**
+     * @Assert\NotBlank(message="Le champ email ne peut pas etre vide")
+     * @Assert\Email(message="Le mail {{ value }} n'es pas valide")
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private ?string $email;
 
     /**
+     * @Assert\NotBlank(message="Le champ content ne peut pas etre vide")
      * @ORM\Column(type="text")
      */
-    private $content;
+    private ?string $content;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $published_at;
+    private ?\DateTimeImmutable $published_at;
 
     /**
      * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments")
      */
-    private $post;
+    private ?Post $post;
+
+    /**
+     * @Assert\IsTrue(message="Ce champ est obligatoire")
+     * @ORM\Column(type="boolean")
+     */
+    private ?bool $rgpd;
 
     public function getId(): ?int
     {
@@ -103,6 +114,18 @@ class Comment
     public function setPost(?Post $post): self
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    public function getRgpd(): ?bool
+    {
+        return $this->rgpd;
+    }
+
+    public function setRgpd(bool $rgpd): self
+    {
+        $this->rgpd = $rgpd;
 
         return $this;
     }

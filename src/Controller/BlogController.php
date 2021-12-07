@@ -17,9 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends AbstractController
 {
-    protected $posts;
-    protected $banner;
-    protected $paginator;
+    protected PostRepository $posts;
+    protected BannerRepository $banner;
+    protected PaginatorInterface $paginator;
 
    public function __construct(
       BannerRepository $banner,
@@ -51,22 +51,23 @@ class BlogController extends AbstractController
 
    /**
     * @Route("/blog/post/{slug}", name="blog_post")
+    * @throws \Exception
     */
     public function post(Post $post, Request $request): Response
     {
        $comment = new Comment();
        $comment->setPost($post);
        $comment->setPublishedAt(new \DateTimeImmutable());
+
        $form = $this->createForm(CommentType::class, $comment);
        $form->handleRequest($request);
 
        if ($form->isSubmitted() && $form->isValid()) {
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($comment);
-          $em->flush();
-
-          $this->addFlash('success', 'Votre commentaire est enregisterer avec succès !');
-          return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()], Response::HTTP_SEE_OTHER);
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($comment);
+           $em->flush();
+           $this->addFlash('success', 'Votre commentaire est enregisterer avec succès !');
+           return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()], Response::HTTP_SEE_OTHER);
        }
 
        return $this->render('main/blog/post.html.twig', [

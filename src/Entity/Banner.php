@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BannerRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -21,35 +22,38 @@ class Banner
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Le champ title ne peut pas etre vide")
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private ?string $title;
 
     /**
+     * @Assert\NotBlank(message="Le champ description ne peut pas etre vide")
      * @ORM\Column(type="string", length=255)
      */
-    private $description;
+    private ?string $description;
 
    /**
     * @var File|null
     * @Vich\UploadableField(mapping="banner_image", fileNameProperty="image_name")
     */
-    private $imageFile;
+    private ?File $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image_name;
+    private ?string $image_name;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $updated_at;
+    private ?\DateTimeImmutable $updated_at;
 
     /**
+     * @Assert\NotBlank(message="Le champ name ne peut pas etre cide")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
+    private ?string $name;
 
     public function getId(): ?int
     {

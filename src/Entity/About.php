@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AboutRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AboutRepository::class)
@@ -19,14 +20,15 @@ class About
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Le champ message ne peut pas etre vide")
      * @ORM\Column(type="text")
      */
-    private $content;
+    private ?string $content;
 
    /**
     * @var DateTimeImmutable
     */
-    private $updated_at;
+    private DateTimeImmutable $updated_at;
 
     public function getId(): ?int
     {

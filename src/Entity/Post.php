@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -24,6 +25,7 @@ class Post
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Le champ title ne peut pas etre vide")
      * @ORM\Column(type="string", length=255)
      */
     private ?string $title;
@@ -35,11 +37,13 @@ class Post
     private $slug;
 
     /**
+     * @Assert\NotBlank(message="Le champ sommaire ne peut pas etre vide")
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $summary;
 
     /**
+     * @Assert\NotBlank(message="Le champ content ne peut pas etre vide")
      * @ORM\Column(type="text")
      */
     private string $content;

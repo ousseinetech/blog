@@ -20,13 +20,17 @@ class CommentType extends AbstractType
          ->add('content', CKEditorType::class, [
             'config_name' => 'main_config'
          ])
+         ->add('rgpd', null, [
+            'label' => 'Accepte les conditions de confidentialités'
+         ])
       ;
    }
 
    public function configureOptions(OptionsResolver $resolver)
    {
       $resolver->setDefaults([
-         'class' => Comment::class
+         'class' => Comment::class,
+         'translation_domain' => 'forms'
       ]);
    }
 }
