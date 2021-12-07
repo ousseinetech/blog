@@ -6,8 +6,11 @@
 
 {% block layout %}
 <div class="contain">
+    {% include 'author/_user.html.twig' %}
+
+    <h1 class="title">{{ post.title }}</h1>
+
     <div class="article">
-        <h1 class="title">{{ post.title }}</h1>
         <div class="img-card">
             <img src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
         </div>

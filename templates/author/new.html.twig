@@ -4,12 +4,24 @@
 
 {% block title 'Auteur | New post' %}
 
+{% block css %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('author') }}
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('author') }}
+{% endblock %}
+
 {% block layout %}
 <div class="contain">
+    {% include 'author/_user.html.twig' %}
+
     <h1 class="title">Create new Post</h1>
 
     {{ include('author/_form.html.twig') }}
 
-    <a href="{{ path('author_author_index') }}">back to list</a>
+    <a href="{{ path('blog_author_index') }}">back to list</a>
 </div>
 {% endblock %}

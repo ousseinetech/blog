@@ -4,29 +4,19 @@
 
 {% block title 'Auteur | Post index' %}
 
+{% block css %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('author') }}
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('author') }}
+{% endblock %}
+
 {% block layout %}
 <div class="contain">
-    <div class="top">
-        <div class="dropdown">
-            <a class="btn btn-secondary" href="#" role="button"
-               data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user"></i>&nbsp;&nbsp;{{ app.user.name }}
-            </a>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li class="drop-login">
-                    <i class="fas fa-user"></i>
-                    <p class="login-desc">Logged in as <br> {{ app.user.name }}</p>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li class="drop-logout">
-                    <a class="dropdown-item" href="{{ path('app_logout') }}">
-                        <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Déconnexion
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    {% include 'author/_user.html.twig' %}
 
     <h1 class="title">Post index</h1>
 

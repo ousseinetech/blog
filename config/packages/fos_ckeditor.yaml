@@ -1,0 +1,24 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+
+fos_ck_editor:
+    configs:
+        main_config:
+            toolbar: [
+                ["Format", "TextColor"], "|",
+                ["Bold", "Italic", "Link"], "|",
+                ["NumberedList", "BulletedList", "Blockquote"]
+            ]
+
+        author_config:
+            toolbar: [
+                ["Format", "TextColor"], "|",
+                ["Bold", "Italic", "Link", "Image"], "|",
+                ["NumberedList", "BulletedList", "Blockquote"]
+            ]
+
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []

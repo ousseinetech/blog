@@ -32,6 +32,8 @@ class AuthorController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $post = new Post();
+        $post->setCreatedAt(new \DateTimeImmutable());
+        $post->setUpdatedAt(new \DateTimeImmutable());
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 

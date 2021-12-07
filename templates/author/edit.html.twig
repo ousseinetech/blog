@@ -4,8 +4,20 @@
 
 {% block title 'Auteur | Edit post' %}
 
+{% block css %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('author') }}
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('author') }}
+{% endblock %}
+
 {% block layout %}
 <div class="contain">
+    {% include 'author/_user.html.twig' %}
+
     <h1 class="title">Edit Post</h1>
 
     {{ include('author/_form.html.twig', {'button_label': 'Update'}) }}

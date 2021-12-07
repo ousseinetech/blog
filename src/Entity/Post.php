@@ -45,10 +45,10 @@ class Post
     private string $content;
 
    /**
-    * @var File|null
     * @Vich\UploadableField(mapping="post_image", fileNameProperty="image_name")
+    * @var File|null
     */
-    private ?File $imageFile;
+    private ?File $imageFile = null;
 
     /**
      * @ORM\Column(type="string", length=255)
