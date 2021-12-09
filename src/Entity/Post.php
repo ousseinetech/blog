@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -62,17 +63,17 @@ class Post
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private ?\DateTimeImmutable $created_at;
+    private ?DateTimeImmutable $created_at;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private ?\DateTimeImmutable $published_at;
+    private ?DateTimeImmutable $published_at;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private ?\DateTimeImmutable $updated_at;
+    private ?DateTimeImmutable $updated_at;
 
     /**
      * @ORM\Column(type="boolean")
@@ -85,9 +86,14 @@ class Post
     private Collection $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"})
      */
     private Collection $comments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
+     */
+    private $author;
 
     public function __construct()
     {
@@ -158,7 +164,7 @@ class Post
        $this->imageFile = $imageFile;
 
        if (null !== $imageFile) {
-          $this->updated_at = new \DateTimeImmutable();
+          $this->updated_at = new DateTimeImmutable();
        }
 
        return $this;
@@ -176,36 +182,36 @@ class Post
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getPublishedAt(): ?\DateTimeImmutable
+    public function getPublishedAt(): ?DateTimeImmutable
     {
         return $this->published_at;
     }
 
-    public function setPublishedAt(\DateTimeImmutable $published_at): self
+    public function setPublishedAt(DateTimeImmutable $published_at): self
     {
         $this->published_at = $published_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updated_at): self
+    public function setUpdatedAt(DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -274,6 +280,18 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

@@ -1,7 +1,16 @@
-<div class="">
-    <p class="username">{{ comment.username }}</p>
-    <p class="email">{{ comment.email }}</p>
-    <p class="published"><em>Publié le : {{ comment.publishedAt|date('j F Y') }}</em></p>
-</div>
+<div class="comment-item">
+    <div class="comment-top">
+        <div class="username">
+            <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-user-alt fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div class="published">
+            <h6>{{ comment.username }}</h6>
+            <span>Publié le {{ comment.publishedAt|date('j F Y') }}</span>
+        </div>
+    </div>
 
-<div class="content">{{ comment.content|raw }}</div>
+    <div class="item-content">{{ comment.content | raw }}</div>
+</div>

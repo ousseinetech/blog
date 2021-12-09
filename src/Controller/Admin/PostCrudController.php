@@ -41,8 +41,9 @@ class PostCrudController extends AbstractCrudController
    public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->onlyOnIndex(),
             TextField::new('title'),
+            AssociationField::new('author'),
             ImageField::new('image_name')
                ->setBasePath($this->getParameter('app.path.post_image'))
                ->onlyOnIndex()

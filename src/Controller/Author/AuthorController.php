@@ -2,6 +2,7 @@
 
 namespace App\Controller\Author;
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
@@ -10,12 +11,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 /**
  * @Route("/blog/author")
  */
 class AuthorController extends AbstractController
 {
+    protected $cache;
+
+    public function __construc(CacheInterface $cache)
+    {
+       $this->cache = $cache;
+    }
+
     /**
      * @Route("/", name="blog_author_index", methods={"GET"})
      */
@@ -26,9 +35,9 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="blog_author_new", methods={"GET", "POST"})
-     */
+   /**
+    * @Route("/new", name="blog_author_new", methods={"GET", "POST"})
+    */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $post = new Post();
@@ -60,9 +69,9 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="blog_author_edit", methods={"GET", "POST"})
-     */
+   /**
+    * @Route("/{id}/edit", name="blog_author_edit", methods={"GET", "POST"})
+    */
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PostType::class, $post);
@@ -80,10 +89,10 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="blog_author_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+   /**
+    * @Route("/{id}", name="blog_author_delete", methods={"POST"})
+    */
+    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager, Comment $comment): Response
     {
         if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
             $entityManager->remove($post);

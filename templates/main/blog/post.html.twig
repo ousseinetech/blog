@@ -13,18 +13,18 @@
             </div>
         {% endfor %}
     </div>
-    {# banner #}
-    <div class="banner">
-        <img class="img-banner" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
-        <div class="banner-body">
-            <div class="title">{{ post.title }}</div>
+
+    {% if post.imageName %}
+        <div class="img-top">
+            <img src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
         </div>
-    </div>
+    {% endif %}
 
     <div class="content">
-        <div class="post-content">
-            <p class="published">
-                <strong>Date de publication : {{ post.publishedAt ? post.publishedAt|date('j F Y') : '' }}</strong>
+        <div class="main-content main-post">
+            <h1 class="title">{{ post.title }}</h1>
+            <p class="user-published">
+                Publié par {{ post.author }} || Le {{ post.publishedAt ? post.publishedAt|date('j F Y') : '' }}
             </p>
             <p class="summary"><em>{{ post.summary | raw }}</em></p>
             <article class="article">{{ post.content | raw }}</article>

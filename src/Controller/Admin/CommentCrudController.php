@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class CommentCrudController extends AbstractCrudController
@@ -47,7 +48,7 @@ class CommentCrudController extends AbstractCrudController
           TextField::new('username'),
           TextField::new('email')->onlyOnDetail(),
           DateField::new('published_at'),
-          TextareaField::new('content')->onlyOnDetail(),
+          TextEditorField::new('content')->onlyOnDetail(),
        ];
     }
 }

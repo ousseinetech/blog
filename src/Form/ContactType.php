@@ -17,7 +17,11 @@ class ContactType extends AbstractType
          ->add('username', TextType::class)
          ->add('email', EmailType::class)
          ->add('subject', TextType::class)
-         ->add('content', TextareaType::class);
+         ->add('content', TextareaType::class, [
+            'attr' => [
+               'rows' => 10,
+            ]
+         ]);
    }
 
    public function configureOptions(OptionsResolver $resolver)

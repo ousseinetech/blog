@@ -12,10 +12,10 @@ use Twig\TwigFunction;
 
 class SidebarExtension extends AbstractExtension
 {
-   protected $twig;
-   protected $posts;
-   protected $categories;
-   protected $cache;
+   protected Environment $twig;
+   protected PostRepository $posts;
+   protected CategoryRepository $categories;
+   protected AdapterInterface $cache;
 
    public function __construct(
       Environment $twig,
@@ -33,7 +33,8 @@ class SidebarExtension extends AbstractExtension
    public function getFunctions(): array
    {
       return [
-         new TwigFunction('sidebar', [$this, 'getSidebar'], ['is_safe' => ['html']])
+         new TwigFunction('sidebar', [$this, 'getSidebar'], ['is_safe' => ['html']]),
+         new TwigFunction('dropdown', [$this, 'getDropdown'], ['is_safe' => ['html']])
       ];
    }
 
@@ -48,6 +49,20 @@ class SidebarExtension extends AbstractExtension
    {
       return $this->twig->render('layout/sidebar.html.twig', [
          'posts' => $this->posts->findForSidebar(),
+         'categories' => $this->categories->findAll()
+      ]);
+   }
+
+   public function getDropdown()
+   {
+      return $this->cache->get('dropdown', function () {
+         return $this->renderDropdown();
+      });
+   }
+
+   public function renderDropdown(): string
+   {
+      return $this->twig->render('layout/dropdown.html.twig', [
          'categories' => $this->categories->findAll()
       ]);
    }

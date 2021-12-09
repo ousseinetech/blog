@@ -1,0 +1,7 @@
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+   aria-haspopup="true" aria-expanded="false">Catégories</a>
+<div class="dropdown-menu">
+    {% for category in categories %}
+        <a class="dropdown-item" href="{{ path('blog_category', {slug: category.slug}) }}">{{ category.name }}</a>
+    {% endfor %}
+</div>

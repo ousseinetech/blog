@@ -1,14 +1,23 @@
 <div class="card">
-    {% if post.imageName %}
-        <img class="card-img-top" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{
-        post.imageName }}">
-    {% else %}
-        <img class="card-img-top" src="{{ 'build/images/img-post-default.def29fd8.jpg' }}" alt="image par defaut">
-    {% endif %}
-    <div class="card-body">
-        <h4 class="card-title">{{ post.title }}</h4>
-        <em class="published">Date de publication : {{ post.publishedAt ? post.publishedAt|date('j F Y') }}</em>
-        <p class="card-summary">{{ post.summary }}</p>
+    <div class="img">
+        <a href="{{ path('blog_post', {slug: post.slug}) }}">
+            {% if post.imageName %}
+                <img class="card-img-top" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+            {% else %}
+                <img class="card-img-top" src="{{ 'build/images/img-post-default.def29fd8.jpg' }}" alt="image par defaut">
+            {% endif %}
+        </a>
     </div>
-    <a href="{{ path('blog_post', {slug: post.slug}) }}" class="btn btn-post btn-info">Lire l'article</a>
+    <div class="card-body">
+        <span class="publisher">{{ post.publishedAt ? post.publishedAt|date('j F Y') }}</span>
+        <h4 class="card-title">
+            <a href="{{ path('blog_post', {slug: post.slug}) }}">
+                {{ post.title }}
+            </a>
+        </h4>
+        <p class="card-summary">{{ post.summary }}</p>
+        <p class="author border-dark">
+            {% if post.author %} Publié par {{ post.author }} {% endif %}
+        </p>
+    </div>
 </div>

@@ -10,7 +10,7 @@
     {% include 'main/components/_banner.html.twig' with {banner: banner} only %}
 
     <div class="content">
-        <div class="post-content">
+        <div class="main-content main-blog">
             <div class="grid">
                 {% for post in posts %}
                     {% include 'main/components/_card.html.twig' with {post: post} only %}

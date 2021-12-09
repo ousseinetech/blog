@@ -1,22 +1,26 @@
 <div class="sidebar-content">
-    <div class="last-posts">
-        <h4 class="title">Dérnier articles</h4>
+    <div class="last-posts card text-white bg-dark">
         <div class="last-posts-content">
             {% for post in posts %}
                 <div class="list-group">
-                    <img src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+                    <div class="img">
+                        <a href="{{ path('blog_post', {slug: post.slug}) }}">
+                            <img class="sidebar-img" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.imageName }}">
+                        </a>
+                    </div>
                     <a href="{{ path('blog_post', {slug: post.slug}) }}" class="title">{{ post.title }}</a>
                 </div>
             {% endfor %}
         </div>
     </div>
 
-    <div class="categories">
+    <div class="categories card text-white bg-dark">
         <h4 class="title">Categories</h4>
         <div class="categoy-content">
             {% for category in categories %}
                 <ul class="list-group">
                     <li class="category-item">
+                        <i class="fas fa-external-link-alt"></i>
                         <a class="category-link" href="{{ path('blog_category', {slug: category.slug}) }}">
                             {{ category.name }}
                         </a>
